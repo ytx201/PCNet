@@ -16,7 +16,7 @@ PCNet supports 5 different modes, combining two key design choices:
 | **DPRF** | Dynamic (Attention-based) | Residual | Dynamic periodic template with residual forecasting |
 | **FPCF** | Fixed (Learnable) | Concatenation | Fixed periodic template with concatenation fusion |
 | **FPRF** | Fixed (Learnable) | Residual | Fixed periodic template with residual forecasting |
-| **MLP** | Fixed (Learnable) | Residual | Simple MLP baseline with fixed template |
+| **MLP** | — | — | Simple MLP baseline |
 
 ### Key Features
 

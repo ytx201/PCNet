@@ -10,7 +10,7 @@ PCNet是一个统一的时序预测模型框架，集成了多种模型变体，
 | DPRF | Dynamic Periodic Residual Forecasting | 动态周期模板 + 交叉注意力 + 残差预测 |
 | FPCF | Fixed Periodic Cross Forecasting | 固定周期模板 + 拼接预测 |
 | FPRF | Fixed Periodic Residual Forecasting | 固定周期模板 + 残差预测 |
-| MLP | Multi-Layer Perceptron | 简单MLP基线模型 |
+| MLP | Multi-Layer Perceptron | Simple MLP baseline |
 
 ## 使用方法
 
@@ -60,33 +60,24 @@ python -u run.py \
 
 ### 2. 预测方式
 
-- **Cross Forecasting (DPCF, FPCF)**: 输入与模板拼接后预测
+- **Concatenation (DPCF, FPCF)**: 输入与模板拼接后预测
   ```
   input = concat(x_input, template)
-  output = MLP(input)
+  output_proj = MLP(input)
   ```
 
-- **Residual Forecasting (DPRF, FPRF)**: 预测残差后加上模板
+- **Residual Forecasting (DPRF, FPRF)**: 输入减去模板做去周期化，输出叠加模板
   ```
   input = x_input - template[:seq_len]
   output = MLP(input) + template[seq_len:]
   ```
 
-- **MLP**: 直接预测
+- **MLP**: 输入减去模板做去周期化，直接预测不叠加模板
   ```
-  input = x_input
+  input = x_input - template[:seq_len]
   output = MLP(input)
   ```
 
 ## 脚本示例
 
 参考 `scripts/PCNet/etth1.sh` 查看完整的实验脚本示例。
-
-## 向后兼容
-
-原有的独立模型文件仍然可用：
-- `models/DPCF.py` - 可通过 `--model DPCF` 使用
-- `models/DPRF.py` - 可通过 `--model DPRF` 使用
-- `models/FPCF.py` - 可通过 `--model FPCF` 使用
-- `models/FPRF.py` - 可通过 `--model FPRF` 使用
-- `models/MLP.py` - 可通过 `--model MLP` 使用
