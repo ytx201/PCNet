@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Analysis outputs
+Seasonal_Attention_Analysis/
+Attention_Analysis/
+
+# Sampled seasonal data
+Seasonal_Samples/
+
+# Generated files
+*.png
+*.npz
+statistics.txt
+
+# Misc temp files
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Dataset directory
+dataset/
+
+# Model checkpoints and training outputs
+checkpoints/
+exp_results/
+test_results/
+logs/
+*.pth
+*.pt
+
+dataset
+checkpoints
+logs
